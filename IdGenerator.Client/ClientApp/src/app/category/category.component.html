@@ -1,0 +1,91 @@
+<h1>Categories</h1>
+
+
+<p *ngIf="!categories"><em>Loading...</em></p>
+
+<form (ngSubmit)="add(category)" #bookForm="ngForm">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New</h3>
+    </div>
+    <div class="panel-body">
+
+
+      <div class="row">
+      <div class="col-lg-5">
+        <span class="label label-info" *ngIf="id.errors?.minlength || id.errors?.required">
+          Id must be at least 2 characters long.
+        </span>
+
+      </div>
+
+        <div class="col-lg-5">
+          <span class="label label-info" *ngIf="name.errors?.minlength || name.errors?.required">
+            Name must be at least 4 characters long.
+          </span>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="input-group">
+            <span class="input-group-addon" id="sid">Id</span>
+            <input type="text" class="form-control" aria-describedby="sid" [(ngModel)]="category.id" name="id" required minlength="2" maxlength="10" #id="ngModel">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="input-group">
+            <span class="input-group-addon" id="sname">Name</span>
+            <input type="text" class="form-control" aria-describedby="sname" [(ngModel)]="category.name" name="name" required minlength="4" maxlength="20" #name="ngModel">
+
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">Add</button>
+          </span>
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories ({{categories.length}})</h3>
+  </div>
+  <div class="panel-body">
+
+  <table class='table' *ngIf="categories">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{ category.id }}</td>
+      <td>{{ category.name }}</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+</form>
+
+
+
+
+
+
+
